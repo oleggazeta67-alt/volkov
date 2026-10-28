@@ -6,7 +6,10 @@ const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const DATA_FILE = path.join(ROOT, "data", "projects.json");
 const INDEX_FILE = path.join(ROOT, "index.html");
 const SITE_URL = "https://oleggazeta67-alt.github.io/vetrova/";
-const EMAIL = "hello@vetrova.design";
+const EMAIL = "oleggazeta67@gmail.com";
+const BRAND = "FOMIN";
+const OWNER = "Олег Фомин";
+const CITY = "Москва";
 
 const esc = (value) =>
   String(value)
@@ -77,11 +80,11 @@ const workRow = (project) => `        <a class="work" href="work/${project.slug}
         </a>`;
 
 const favicon =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0a09'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23ff4a1c' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E";
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0a09'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23ff4a1c' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E";
 
 const header = () => `  <header class="site-header" id="site-header">
-    <a class="brand" href="../../index.html" aria-label="VETROVA — на главную">
-      <span class="brand-name">VETROVA</span>
+    <a class="brand" href="../../index.html" aria-label="${OWNER} — на главную">
+      <span class="brand-name">${BRAND}</span>
       <span class="brand-sub">графический дизайн</span>
     </a>
 
@@ -104,7 +107,7 @@ const header = () => `  <header class="site-header" id="site-header">
 
   <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Меню" aria-hidden="true">
     <div class="mm-top">
-      <span class="mm-brand">VETROVA</span>
+      <span class="mm-brand">${BRAND}</span>
       <button class="mm-close" type="button" aria-label="Закрыть меню">×</button>
     </div>
     <nav class="mm-nav" aria-label="Мобильная навигация">
@@ -114,17 +117,17 @@ const header = () => `  <header class="site-header" id="site-header">
     </nav>
     <div class="mm-foot">
       <a href="mailto:${EMAIL}">${EMAIL}</a>
-      <p>Санкт-Петербург · удалённо</p>
+      <p>${CITY} · удалённо</p>
     </div>
   </div>`;
 
 const footer = () => `  <footer class="footer">
     <div class="footer-top">
-      <span>© 2026 VETROVA</span>
+      <span>© 2026 ${BRAND}</span>
       <span>Графический дизайн</span>
       <a href="#main">Наверх ↑</a>
     </div>
-    <div class="footer-word" aria-hidden="true">VETROVA<span>.</span></div>
+    <div class="footer-word" aria-hidden="true">${BRAND}<span>.</span></div>
   </footer>`;
 
 const projectPage = (project, next) => {
@@ -136,16 +139,21 @@ const projectPage = (project, next) => {
   const deliverables = project.deliverables
     .map((item) => `            <li>${esc(item)}</li>`)
     .join("\n");
+  const siteLink = project.link
+    ? `\n        <a class="p-site" href="${esc(project.link)}" target="_blank" rel="noopener">${esc(
+        project.linkLabel || "Открыть сайт"
+      )} <span aria-hidden="true">↗</span></a>`
+    : "";
 
   return `<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${esc(project.title)} — VETROVA</title>
+  <title>${esc(project.title)} — ${OWNER}</title>
   <meta name="description" content="${esc(description)}">
   <meta name="theme-color" content="#0b0a09">
-  <meta property="og:title" content="${esc(project.title)} — VETROVA">
+  <meta property="og:title" content="${esc(project.title)} — ${OWNER}">
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:type" content="article">
   <meta property="og:image" content="${esc(ogImage)}">
@@ -197,7 +205,9 @@ ${deliverables}
         </div>
       </dl>
 
-      <a class="p-back" href="../../index.html#projects">← Все проекты</a>
+      <div class="p-actions">
+        <a class="p-back" href="../../index.html#projects">← Все проекты</a>${siteLink}
+      </div>
     </section>
 
     <figure class="p-cover">
