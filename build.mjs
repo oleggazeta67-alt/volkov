@@ -7,6 +7,7 @@ const DATA_FILE = path.join(ROOT, "data", "projects.json");
 const INDEX_FILE = path.join(ROOT, "index.html");
 const SITE_URL = "https://oleggazeta67-alt.github.io/fomin/";
 const EMAIL = "oleggazeta67@gmail.com";
+const TELEGRAM = "corrny303";
 const BRAND = "FOMIN";
 const OWNER = "Олег Фомин";
 const CITY = "Москва";
@@ -90,13 +91,14 @@ const header = () => `  <header class="site-header" id="site-header">
 
     <nav class="nav" aria-label="Основная навигация">
       <a href="../../index.html#projects">Проекты</a>
-      <a href="../../index.html#about">О практике</a>
+      <a href="../../index.html#services">Услуги</a>
+      <a href="../../index.html#about">Обо мне</a>
       <a href="../../index.html#contact">Контакт</a>
     </nav>
 
     <div class="header-side">
-      <span class="status"><i aria-hidden="true"></i>открыта к проектам</span>
-      <a class="header-mail" href="mailto:${EMAIL}">${EMAIL}</a>
+      <span class="status"><i aria-hidden="true"></i>беру заказы</span>
+      <a class="header-mail" href="https://t.me/${TELEGRAM}" target="_blank" rel="noopener">@${TELEGRAM}</a>
     </div>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
@@ -112,10 +114,12 @@ const header = () => `  <header class="site-header" id="site-header">
     </div>
     <nav class="mm-nav" aria-label="Мобильная навигация">
       <a href="../../index.html#projects"><span>01</span>Проекты</a>
-      <a href="../../index.html#about"><span>02</span>О практике</a>
-      <a href="../../index.html#contact"><span>03</span>Контакт</a>
+      <a href="../../index.html#services"><span>02</span>Услуги</a>
+      <a href="../../index.html#about"><span>03</span>Обо мне</a>
+      <a href="../../index.html#contact"><span>04</span>Контакт</a>
     </nav>
     <div class="mm-foot">
+      <a href="https://t.me/${TELEGRAM}" target="_blank" rel="noopener">@${TELEGRAM}</a>
       <a href="mailto:${EMAIL}">${EMAIL}</a>
       <p>${CITY} · удалённо</p>
     </div>
