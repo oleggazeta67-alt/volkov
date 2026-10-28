@@ -5,7 +5,7 @@ import path from "node:path";
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const DATA_FILE = path.join(ROOT, "data", "projects.json");
 const INDEX_FILE = path.join(ROOT, "index.html");
-const SITE_URL = "https://oleggazeta67-alt.github.io/vetrova/";
+const SITE_URL = "https://oleggazeta67-alt.github.io/fomin/";
 const EMAIL = "oleggazeta67@gmail.com";
 const BRAND = "FOMIN";
 const OWNER = "Олег Фомин";
