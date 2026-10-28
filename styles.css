@@ -1,5 +1,5 @@
 /* =========================================================
-   FOMIN — portfolio
+   VOLKOV — portfolio
    Dark editorial system
    ========================================================= */
 
@@ -1089,7 +1089,7 @@ button {
   margin-top: clamp(1.5rem, 5vh, 3rem);
   margin-bottom: -0.06em;
   font-family: var(--font-display);
-  font-size: 21vw;
+  font-size: 18vw;
   font-weight: 500;
   line-height: 0.95;
   letter-spacing: -0.055em;
@@ -1471,7 +1471,7 @@ button {
 
 @media (max-width: 720px) {
   .footer-word {
-    font-size: 19vw;
+    font-size: 17vw;
   }
 
   .work {

@@ -16,8 +16,8 @@ const INDEX_FILE = path.join(ROOT, "index.html");
 const SITE_URL = "https://oleggazeta67-alt.github.io/fomin/";
 const EMAIL = "oleggazeta67@gmail.com";
 const TELEGRAM = "corrny303";
-const BRAND = "FOMIN";
-const OWNER = "Олег Фомин";
+const BRAND = "VOLKOV";
+const OWNER = "Олег Волков";
 const CITY = "Москва";
 
 const esc = (value) =>
@@ -89,7 +89,7 @@ const workRow = (project) => `        <a class="work" href="work/${project.slug}
         </a>`;
 
 const favicon =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0a09'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23ff4a1c' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E";
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0a09'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23ff4a1c' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E";
 
 const header = () => `  <header class="site-header" id="site-header">
     <a class="brand" href="../../index.html" aria-label="${OWNER} — на главную">
