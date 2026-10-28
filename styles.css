@@ -835,15 +835,13 @@ button {
 }
 
 .sc-price {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
   margin-top: auto;
-  padding-top: 0.85rem;
+  padding-top: 0.9rem;
   border-top: 1px solid var(--line);
-  font-family: var(--font-mono);
-  font-size: clamp(0.76rem, 1.1vw, 0.88rem);
-  letter-spacing: 0.04em;
-  color: var(--ink);
-  white-space: nowrap;
-  transition: color 0.4s, border-color 0.4s;
+  transition: border-color 0.4s;
 }
 
 .service-card:hover .sc-price,
@@ -851,10 +849,29 @@ button {
   border-top-color: color-mix(in srgb, var(--card-accent) 45%, transparent);
 }
 
+.sc-price-label {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.sc-price-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.02rem, 1.8vw, 1.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  white-space: nowrap;
+  transition: color 0.4s;
+}
+
 .service-card:hover .sc-title,
-.service-card:hover .sc-price,
 .service-card:focus-visible .sc-title,
-.service-card:focus-visible .sc-price {
+.service-card:hover .sc-price-value,
+.service-card:focus-visible .sc-price-value {
   color: var(--card-accent);
 }
 

@@ -1,8 +1,16 @@
 import { readFile, writeFile, mkdir, access } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 import path from "node:path";
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
+const assetVersion = async (file) =>
+  createHash("md5")
+    .update(await readFile(path.join(ROOT, file)))
+    .digest("hex")
+    .slice(0, 8);
+const CSS_VERSION = await assetVersion("styles.css");
+const JS_VERSION = await assetVersion("script.js");
 const DATA_FILE = path.join(ROOT, "data", "projects.json");
 const INDEX_FILE = path.join(ROOT, "index.html");
 const SITE_URL = "https://oleggazeta67-alt.github.io/fomin/";
@@ -175,9 +183,9 @@ const projectPage = (project, next) => {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Golos+Text:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../styles.css?v=${CSS_VERSION}">
   <script>document.documentElement.classList.add('js');</script>
-  <script src="../../script.js" defer></script>
+  <script src="../../script.js?v=${JS_VERSION}" defer></script>
 </head>
 <body class="project-page" style="--accent: ${esc(project.accent || "#ff4a1c")}">
   <a class="skip" href="#main">Перейти к содержанию</a>
@@ -266,6 +274,10 @@ const main = async () => {
     /<!-- COUNT:START -->[\s\S]*?<!-- COUNT:END -->/,
     `<!-- COUNT:START -->${countLabel}<!-- COUNT:END -->`
   );
+
+  index = index
+    .replace(/href="styles\.css(?:\?v=[^"]*)?"/, `href="styles.css?v=${CSS_VERSION}"`)
+    .replace(/src="script\.js(?:\?v=[^"]*)?"/, `src="script.js?v=${JS_VERSION}"`);
 
   await writeFile(INDEX_FILE, index, "utf8");
 
