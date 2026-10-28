@@ -152,9 +152,9 @@ const projectPage = (project, next) => {
     .map((item) => `            <li>${esc(item)}</li>`)
     .join("\n");
   const siteLink = project.link
-    ? `\n        <a class="p-site" href="${esc(project.link)}" target="_blank" rel="noopener">${esc(
-        project.linkLabel || "Открыть сайт"
-      )} <span aria-hidden="true">↗</span></a>`
+    ? `\n        <a class="p-site" href="${esc(
+        /^https?:/.test(project.link) ? project.link : `../../${project.link}`
+      )}" target="_blank" rel="noopener">${esc(project.linkLabel || "Открыть сайт")} <span aria-hidden="true">↗</span></a>`
     : "";
   const nextBlock = next
     ? `    <a class="p-next" href="../${next.slug}/">
@@ -165,6 +165,22 @@ const projectPage = (project, next) => {
       </span>
     </a>`
     : "";
+  const gallery =
+    Array.isArray(project.gallery) && project.gallery.length
+      ? `    <section class="p-gallery" aria-label="Слайды презентации">
+${project.gallery
+  .map(
+    (item) => `      <figure>
+        <img src="../../${esc(item.src)}" width="${item.width || 1280}" height="${
+          item.height || 720
+        }" alt="${esc(item.alt)}" loading="lazy">
+      </figure>`
+  )
+  .join("\n")}
+    </section>
+
+`
+      : "";
 
   return `<!DOCTYPE html>
 <html lang="ru">
@@ -248,7 +264,7 @@ ${paragraphs}
       </div>
     </section>
 
-${nextBlock}
+${gallery}${nextBlock}
   </main>
 
 ${footer()}

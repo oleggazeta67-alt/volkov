@@ -1274,6 +1274,25 @@ button {
   color: var(--ink-dim);
 }
 
+.p-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1.2vw, 1rem);
+  padding: 0 var(--pad) clamp(2rem, 6vh, 4rem);
+}
+
+.p-gallery figure {
+  margin: 0;
+}
+
+.p-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+
 .p-next {
   display: block;
   padding: clamp(2.5rem, 8vh, 5rem) var(--pad);
@@ -1567,6 +1586,11 @@ button {
 
   .p-cover {
     padding: 0 1rem;
+  }
+
+  .p-gallery {
+    grid-template-columns: 1fr;
+    padding: 0 1rem 2.5rem;
   }
 
   .p-caption {
