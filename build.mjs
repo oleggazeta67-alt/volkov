@@ -144,6 +144,15 @@ const projectPage = (project, next) => {
         project.linkLabel || "Открыть сайт"
       )} <span aria-hidden="true">↗</span></a>`
     : "";
+  const nextBlock = next
+    ? `    <a class="p-next" href="../${next.slug}/">
+      <span class="p-next-label">Следующий проект</span>
+      <span class="p-next-title">
+        <span>${esc(next.title)}</span>
+        <span aria-hidden="true">→</span>
+      </span>
+    </a>`
+    : "";
 
   return `<!DOCTYPE html>
 <html lang="ru">
@@ -227,13 +236,7 @@ ${paragraphs}
       </div>
     </section>
 
-    <a class="p-next" href="../${next.slug}/">
-      <span class="p-next-label">Следующий проект</span>
-      <span class="p-next-title">
-        <span>${esc(next.title)}</span>
-        <span aria-hidden="true">→</span>
-      </span>
-    </a>
+${nextBlock}
   </main>
 
 ${footer()}
@@ -264,7 +267,7 @@ const main = async () => {
 
   for (let i = 0; i < projects.length; i += 1) {
     const project = projects[i];
-    const next = projects[(i + 1) % projects.length];
+    const next = projects.length > 1 ? projects[(i + 1) % projects.length] : null;
     const dir = path.join(ROOT, "work", project.slug);
     await mkdir(dir, { recursive: true });
     await writeFile(path.join(dir, "index.html"), projectPage(project, next), "utf8");
